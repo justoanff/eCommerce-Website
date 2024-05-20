@@ -13,7 +13,7 @@
             <div class="price">
               {{ tempProduct.unitPrice | currency : "USD" }}
             </div>
-            <a href="#" class="primary-btn">Add to Cart</a>
+            <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm">Add to cart</button>
           </div>
         </div>
         <!-- if products empty then display a mess -->
@@ -36,6 +36,8 @@
                   [(page)]="thePageNumber"
                   [pageSize]="thePageSize"
                   [collectionSize]="theTotalElements"
+                  [maxSize]="5"
+                  [boundaryLinks]="true"
                   (pageChange)="listProducts()"
                 ></ngb-pagination>
               </div>
@@ -46,6 +48,7 @@
                   #myPageSelect
                   (change)="updatePageSize(myPageSelect.value)"
                 >
+                  <option>2</option>
                   <option selected="true">5</option>
                   <option>10</option>
                   <option>20</option>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../common/product';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from '../../common/cart-item';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements OnInit {
+
 
   products: Product[] = [];
   currentCategoryId: number = 1;
@@ -20,8 +23,11 @@ export class ProductListComponent implements OnInit {
   thePageSize: number = 5;
   theTotalElements: number = 0;
 
-  constructor(private productService: ProductService,
-    private route: ActivatedRoute) { }
+  previousKeyword: string = "";
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private cartService: CartService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(() => {
@@ -46,12 +52,15 @@ export class ProductListComponent implements OnInit {
 
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
 
+    // if having a diff keyword than prev, then set thePageNum to 1
+    if (this.previousKeyword != theKeyword) {
+      this.thePageNumber = 1;
+    }
+    this.previousKeyword = theKeyword;
+    console.log(`keyword=${theKeyword}, thePageNumber=${this.thePageNumber}`);
+
     // now search for the products using keyword
-    this.productService.searchProducts(theKeyword).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    this.productService.searchProductsPaginate(this.thePageNumber - 1, this.thePageSize, theKeyword).subscribe(this.processResult());
   }
 
   handleListProducts() {
@@ -88,12 +97,7 @@ export class ProductListComponent implements OnInit {
       this.thePageSize,
       this.currentCategoryId)
       .subscribe(
-        data => {
-          this.products = data._embedded.products;
-          this.thePageNumber = data.page.number + 1;
-          this.thePageSize = data.page.size;
-          this.theTotalElements = data.page.totalElements;
-        }
+        this.processResult()
       );
   }
 
@@ -102,5 +106,17 @@ export class ProductListComponent implements OnInit {
     this.thePageNumber = 1;
     this.listProducts();
   }
-
+  processResult() {
+    return (data: any) => {
+      this.products = data._embedded.products;
+      this.thePageNumber = data.page.number + 1;
+      this.thePageSize = data.page.size;
+      this.theTotalElements = data.page.totalElements;
+    };
+  }
+  addToCart(theProduct: Product) {
+    console.log(`Adding to cart: ${theProduct.name}, ${theProduct.unitPrice}`);
+    const theCartItem = new CartItem(theProduct);
+    this.cartService.addToCart(theCartItem);
+  }
 }
