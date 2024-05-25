@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../common/cart-item';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,8 @@ import { Subject } from 'rxjs';
 export class CartService {
 
   cartItems: CartItem[] = [];
-  totalPrice: Subject<number> = new Subject<number>();
-  totalQuantity: Subject<number> = new Subject<number>();
+  totalPrice: Subject<number> = new BehaviorSubject<number>(0);
+  totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
   constructor() { }
   addToCart(theCartItem: CartItem) {
     //check if already have items in cart
@@ -62,12 +62,11 @@ export class CartService {
     this.logCartData(totalPriceValue, totalQuantityValue);
   }
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
-    console.log(`Contents of the cart`);
+
     for (let tempCartItem of this.cartItems) {
       const subTotalPrice = tempCartItem.quantity + tempCartItem.unitPrice;
       console.log(`name: ${tempCartItem.name}, quantity=${tempCartItem.quantity}, unitPrice= ${tempCartItem.unitPrice}`);
     }
-    console.log(`totalPrice:${totalPriceValue.toFixed(2)}, totalQuantity:${totalQuantityValue.toFixed(2)}`);
-    console.log(`---`);
+;
   }
 }
