@@ -69,7 +69,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     OktaAuthModule
   ],
-  providers: [provideClientHydration(), ProductService, { provide: OKTA_CONFIG, useValue: { oktaAuth } }],
+  providers: [provideClientHydration(),
+    ProductService,
+  { provide: OKTA_CONFIG, useValue: { oktaAuth } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
