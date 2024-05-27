@@ -224,7 +224,7 @@ section {
 }
 
 .au-input-xl {
-    min-width: 935px
+    min-width: 500px
 }
 
 input.au-input.au-input-xl {
@@ -782,8 +782,9 @@ table.table.table-bordered th {
 .detail-section {
     margin-top: 60px
 }
-.detail-img{
-width: 30%;
+
+.detail-img {
+    width: 30%;
 }
 
 /**/
