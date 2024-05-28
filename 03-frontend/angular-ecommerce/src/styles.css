@@ -571,7 +571,7 @@ input.au-input.au-input-xl {
 }
 
 .product-box {
-    margin-bottom: 60px
+    margin-bottom: 20px
 }
 
 .price {
@@ -785,6 +785,10 @@ table.table.table-bordered th {
 
 .detail-img {
     width: 30%;
+    margin: 0 auto;
+    /* This centers the image horizontally */
+    display: block;
+    /* Ensures the image is treated as a block element */
 }
 
 /**/
