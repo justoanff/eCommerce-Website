@@ -60,4 +60,4 @@ Additional Features
 
 1.	Responsive Design for Mobile and Desktop 
 
-Credit: Chad Darby Instructor
+Credit: Chad Darby Instructor (https://github.com/darbyluv2code)
