@@ -42,7 +42,7 @@ Order Management
 
 Payment Processing
 
-1.	Multiple Payment Options (Credit Card, PayPal, etc.)
+1.	Multiple Payment Options
 
 2.	Secure Payment Processing
 
