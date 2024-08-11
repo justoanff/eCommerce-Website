@@ -85,6 +85,7 @@ The project is organized into three main folders:
 - Angular CLI
 - Any IDE supports JAVA and Angular (e.g., IntelliJ IDEA, Visual Studio Code)
 - MySQL server and MySQL Workbench installed and running
+- [Allow invalid certificates for resources loaded from localhost](https://priesdelly.medium.com/how-to-access-https-on-localhost-in-google-chrome-cf92a929ccea#:~:text=1.,localhost%20in%20the%20address%20bar.).
 
 ### Backend Setup (IntelliJ IDEA)
 
@@ -152,4 +153,4 @@ This project was developed with guidance from [Chad Darby](https://github.com/da
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
