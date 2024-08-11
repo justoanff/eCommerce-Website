@@ -72,7 +72,8 @@ The project is organized into three main folders:
 ## Technology Stack
 
 - **Backend**: Java Spring Boot
-- **Frontend**: Angular
+- **Frontend**: Angular, HTML, CSS, Bootstrap
+- **Authentication**: Okta
 - **Database**: MySQL
 - **Payment Gateway**: Stripe
 
@@ -85,43 +86,53 @@ The project is organized into three main folders:
 - Any IDE supports JAVA and Angular (e.g., IntelliJ IDEA, Visual Studio Code)
 - MySQL server and MySQL Workbench installed and running
 
-### Backend Setup
+### Backend Setup (IntelliJ IDEA)
+
 1. Clone the repository:
     ```bash
     git clone https://github.com/justoanff/eCommerce-Website.git
     ```
-2. Navigate to the `02-backend` directory:
-    ```bash
-    cd 02-backend
+2. Open the `02-backend` folder in IntelliJ IDEA:
+    - Select `File > Open`, navigate to the `02-backend` directory, and open it.
+    - Ensure the project is imported as a Maven project.
+  
+3. Configure the MySQL database connection:
+    - Open `src/main/resources/application.properties`.
+    - Update the database connection properties:
+    ```properties
+    spring.datasource.username=your_username
+    spring.datasource.password=your_password
     ```
-3. Install dependencies:
-    ```bash
-    ./mvnw install
-    ```
-4. Update the `application.properties` file with your database credentials.
-5. Run the application:
-    ```bash
-    ./mvnw spring-boot:run
-    ```
+4. Run the application:
+    - Locate the main application class annotated with `@SpringBootApplication`.
+    - Right-click on the class and select `Run 'EcommerceApplication'`.
 
-### Frontend Setup
-1. Navigate to the `03-frontend` directory:
-    ```bash
-    cd 03-frontend
-    ```
-2. Install dependencies:
+5. The backend application should now be running.
+
+### Frontend Setup (Visual Studio Code)
+
+1. Open the `03-frontend` folder in Visual Studio Code:
+    - Select `File > Open Folder`, navigate to the `03-frontend` directory, and open it.
+
+2. Install the necessary dependencies:
     ```bash
     npm install
     ```
-3. Run the application:
+
+3. Run the Angular development server:
     ```bash
     npm start
     ```
+
 4. Access the application at `https://localhost:4200`.
 
-### Database Setup
+### Database Setup (MySQL)
+
 1. Navigate to the `01-starter-files` directory.
-2. Run the provided script(s) to set up your database schema and initial data.
+2. Use the provided SQL scripts to set up your MySQL database:
+    - Open your MySQL command line or a MySQL client like MySQL Workbench.
+    - Run the `01-create-user.sql`, `03-countries-and-states.sq`, `04-create-order-tables.sql` script to create the database schema.
+    - Run the `02-refresh-database-with-100-products.sql` script to populate the database with initial data.
 
 ## Usage
 
